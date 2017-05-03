@@ -1,0 +1,17 @@
+page-home {
+    ion-content.content.content-md {
+        background-color: map-get($colors, 'darkGreen');
+    }
+
+    #homeLogo {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        top: 100px;
+    }
+
+    #appTitle {
+        //font-family: $merienda-regular;
+        color: map-get($colors, 'white');
+    }
+}
