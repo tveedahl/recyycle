@@ -1,6 +1,6 @@
 page-home {
     ion-content.content.content-md {
-        background-color: map-get($colors, 'darkGreen');
+        background-color: map-get($colors, darkGreen);
     }
 
     #homeLogo {
@@ -10,8 +10,19 @@ page-home {
         top: 100px;
     }
 
-    #appTitle {
-        //font-family: $merienda-regular;
-        color: map-get($colors, 'white');
+    p {
+        text-align: center;
+        position: relative;
+        top: 115px;
+    }
+
+    p#appTitle {
+        font-family: $merienda-regular;
+        color: map-get($colors, white);
+    }
+
+    p#appDesc {
+        font-family: $merienda-regular;
+        color: map-get($colors, white)
     }
 }
