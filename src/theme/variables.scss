@@ -79,7 +79,7 @@ $colors: (
 
 @font-face {
   font-family: 'Merienda Regular';
-  src: url('../../assets/fonts/Merienda-Regualr.ttf');
+  src: url('../assets/fonts/Merienda-Regular.ttf') format('truetype');
 }
 
-$merienda-regular: 'Merienda Regular';
+$merienda-regular: 'Merienda Regular', sans-serif;

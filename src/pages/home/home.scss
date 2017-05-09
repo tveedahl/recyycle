@@ -19,10 +19,12 @@ page-home {
     p#appTitle {
         font-family: $merienda-regular;
         color: map-get($colors, white);
+        font-size: 36px;
     }
 
     p#appDesc {
         font-family: $merienda-regular;
-        color: map-get($colors, white)
+        color: map-get($colors, white);
+        font-size: 14px;
     }
 }
