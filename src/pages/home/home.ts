@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { SignupPage } from '../pages/signup/signup';
+import { Signup } from '../signup/signup';
 
 @Component({
   selector: 'page-home',
@@ -9,17 +9,14 @@ import { SignupPage } from '../pages/signup/signup';
 })
 export class HomePage {
 
-constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController) {
   }
 
+  ionViewDidLoad() {
+    wait(3000);
+    this.navCtrl.push(Signup);
+  }
 }
-
-$scope.$on("$ionicView.enter", function(event, data){
-   alert('asswipe!');
-    // handle event
-   console.log("State Params: ", data.stateParams);
-});
 
 function wait(ms){
    var start = new Date().getTime();
@@ -27,8 +24,4 @@ function wait(ms){
    while(end < start + ms) {
      end = new Date().getTime();
   }
-}
-
-function navToSignup () {
-    wait(3000);
-}
+};
