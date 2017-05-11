@@ -13,15 +13,10 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    wait(3000);
+    setTimeout(this.navToSignup(), 7000);
+  }
+
+  navToSignup(){
     this.navCtrl.push(Signup);
   }
 }
-
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
-};
