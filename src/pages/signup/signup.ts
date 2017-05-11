@@ -21,4 +21,8 @@ export class Signup {
     console.log('ionViewDidLoad Signup');
   }
 
+  signup = {}
+  signupUser() {
+    console.log(this.signup)
+  }
 }
