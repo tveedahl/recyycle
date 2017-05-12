@@ -13,8 +13,8 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    setTimeout(this.navToSignup(), 100000);
-  }
+    setTimeout(this.navToSignup(), 50000);
+}
 
   navToSignup(){
     this.navCtrl.push(Signup);

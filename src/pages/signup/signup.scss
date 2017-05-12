@@ -7,6 +7,10 @@ page-signup {
         text-align: center;
         font-family: $merienda-regular;
         font-size: 16px;
-        color: map-get($colors, white) !important;
+        color: map-get($colors, white);
+    }
+
+    span#loginClick {
+        color: map-get($colors, lightBrown);
     }
 }

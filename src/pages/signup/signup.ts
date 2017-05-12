@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Auth, User, UserDetails, IDetailedError } from '@ionic/cloud-angular';
 
 /**
  * Generated class for the Signup page.
@@ -14,15 +16,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Signup {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: Auth, public user: User) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Signup');
   }
 
   signup = {}
   signupUser() {
-    console.log(this.signup)
+    console.log(this.signup);
+    //let details: UserDetails = this.signup;
+    this.auth.signup('basic', this.signup).then(() => {
+      // `this.user` is now registered
+    }, (err: IDetailedError<string[]>) => {
+      for (let e of err.details) {
+        if (e === 'conflict_email') {
+          alert('Email already exists.');
+        } else {
+          // handle other errors
+        }
+      }
+    });
   }
 }

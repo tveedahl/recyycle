@@ -24,7 +24,7 @@ page-home {
 
     p#appDesc {
         font-family: $merienda-regular;
-        color: map-get($colors, white);
-        font-size: 14px;
+        color: map-get($colors, lightBrown);
+        font-size: 15px;
     }
 }
