@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
-import firebase from firebase;
+import firebase from 'firebase';
 
 /**
  * Generated class for the Signup page.
@@ -27,7 +27,17 @@ export class Signup {
 
   signup = {}
   signupUser() {
-    console.log(this.signup);
-    firebase.createUserWithEmailandPassword('tveedahl@gmail.com', 'guppy');
+    firebase.auth().createUserWithEmailAndPassword('tveedahl@gmail.com', 'bguppy') {
+      .catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      }
+    });
   }
 }
