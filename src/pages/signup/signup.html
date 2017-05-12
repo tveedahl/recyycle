@@ -1,16 +1,16 @@
-<ion-content>
+﻿<ion-content>
     <img src="../../assets/images/splashbg_v4.gif" />
     <p class="signupText">Register With Email or Login</p>
-    <form (ngSubmit)="signupUser()">
+    <form [formGroup]="signupForm" (ngSubmit)="signupUser()">
       <ion-item>
         <ion-label>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="signup.email" name="email"></ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="signup.password" name="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-      <button ion-button type="submit" block>SIGNUP</button>
+      <button id="signupFormBtn" ion-button type="submit">SIGN UP</button>
     </form>
     <p class="signupText">Already registered? <span id="loginClick">Login</span></p>
 </ion-content>
