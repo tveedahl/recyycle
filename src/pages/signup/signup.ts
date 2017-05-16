@@ -31,15 +31,21 @@ export class Signup {
 
   signupUser() {
     //console.log(this.signupForm.value);
-    firebase.auth().createUserWithEmailAndPassword(this.signupForm.value.email, this.signupForm.value.password).catch(function(error) {
-      //var errorCode = error.code;
-      //var errorMessage = error.message;
+    firebase.auth(alertCtrl).createUserWithEmailAndPassword(this.signupForm.value.email, this.signupForm.value.password).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      if (errorCode == 'auth/invalid-email') {
+        let alert = this.alertCtrl.create({
+          //title: 'Signup Error',
+          subTitle: errorMessage,
+          buttons: ['OK']
+        });
+        alert.present();
+      } else {
+        alert.present();
+      }
+      console.log(error);
     });
-    let alert = this.alertCtrl.create({
-      title: 'New Friend!',
-      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-      buttons: ['OK']
-    });
-    alert.present();
   }
 }
