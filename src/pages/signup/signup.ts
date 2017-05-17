@@ -2,7 +2,10 @@
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
+
 import firebase from 'firebase';
+
+import { Login } from '../login/login';
 
 /**
  * Generated class for the Signup page.
@@ -18,11 +21,11 @@ import firebase from 'firebase';
 export class Signup {
 
   private signupForm : FormGroup;
- 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController) {
     this.signupForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      password: ['']
+      email: '',
+      password: ''
     });
   }
 
@@ -31,21 +34,33 @@ export class Signup {
 
   signupUser() {
     //console.log(this.signupForm.value);
-    firebase.auth(alertCtrl).createUserWithEmailAndPassword(this.signupForm.value.email, this.signupForm.value.password).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode);
-      if (errorCode == 'auth/invalid-email') {
-        let alert = this.alertCtrl.create({
-          //title: 'Signup Error',
-          subTitle: errorMessage,
-          buttons: ['OK']
-        });
-        alert.present();
-      } else {
-        alert.present();
-      }
-      console.log(error);
+    let invEmailAlert = this.alertCtrl.create({
+      title: 'Signup Error',
+      subTitle: 'The email address is badly formatted',
+      buttons: ['OK']
     });
+    let weakPassAlert = this.alertCtrl.create({
+      title: 'Signup Error',
+      subTitle: 'The password must 6 characters long or more',
+      buttons: ['OK']
+    });
+    let emailInUseAlert = this.alertCtrl.create({
+      title: 'Signup Error',
+      subTitle: 'The email address is already in use by another account',
+      buttons: ['OK']
+    });
+    firebase.auth().createUserWithEmailAndPassword(this.signupForm.value.email, this.signupForm.value.password).catch(function(error) {
+      var errorCode = error['code'];
+      var errorMessage = error['message'];
+      console.log(error);
+      if (errorCode == 'auth/invalid-email') {
+        invEmailAlert.present();
+      } else if (errorCode == 'auth/weak-password') {
+        weakPassAlert.present();
+      } else if (errorCode == 'auth/email-already-in-use') {
+        emailInUseAlert.present();
+      }
+    });
+    
   }
 }
