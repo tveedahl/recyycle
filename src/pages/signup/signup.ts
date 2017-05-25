@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 
 import firebase from 'firebase';
@@ -29,9 +29,6 @@ export class Signup {
     });
   }
 
-  ionViewDidLoad() {
-  }
-
   signupUser() {
     //console.log(this.signupForm.value);
     let invEmailAlert = this.alertCtrl.create({
@@ -51,8 +48,7 @@ export class Signup {
     });
     firebase.auth().createUserWithEmailAndPassword(this.signupForm.value.email, this.signupForm.value.password).catch(function(error) {
       var errorCode = error['code'];
-      var errorMessage = error['message'];
-      console.log(error);
+      //console.log(error);
       if (errorCode == 'auth/invalid-email') {
         invEmailAlert.present();
       } else if (errorCode == 'auth/weak-password') {
@@ -60,7 +56,22 @@ export class Signup {
       } else if (errorCode == 'auth/email-already-in-use') {
         emailInUseAlert.present();
       }
+      console.log('gothere'); 
     });
-    
   }
+
+  sendConfirm() {
+    var user = firebase.auth().currentUser;
+    user.sendEmailVerification().then(function() {
+      console.log('confirmation sent')
+    }, function(error) {
+      console.log('confirmation not sent');
+    });
+    this.navCtrl.push(Login);
+  }
+
+  /*ionViewDidLeave() {
+    console.log('got here!');
+    this.sendConfirm();
+  }*/
 }
