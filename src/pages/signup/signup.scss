@@ -3,7 +3,7 @@
         background-color: map-get($colors, darkGreen) !important;
     }
 
-    .signupText {
+    p.signupText {
         text-align: center;
         font-family: $merienda-regular;
         font-size: 16px;
@@ -15,7 +15,7 @@
       margin: 10px auto;
     }
 
-    span#loginClick {
+    a#loginClick {
         color: map-get($colors, lightBrown);
     }
 }

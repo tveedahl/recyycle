@@ -77,4 +77,9 @@ export class Signup {
       }
     });
   }
+
+  navToLogin() {
+    console.log('login click');
+    this.navCtrl.push(Login);
+  }
 }
