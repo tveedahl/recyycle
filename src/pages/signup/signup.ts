@@ -56,22 +56,23 @@ export class Signup {
       } else if (errorCode == 'auth/email-already-in-use') {
         emailInUseAlert.present();
       }
-      console.log('gothere'); 
     });
-  }
-
-  sendConfirm() {
-    var user = firebase.auth().currentUser;
-    user.sendEmailVerification().then(function() {
-      console.log('confirmation sent')
-    }, function(error) {
-      console.log('confirmation not sent');
-    });
-    this.navCtrl.push(Login);
-  }
-
-  /*ionViewDidLeave() {
-    console.log('got here!');
     this.sendConfirm();
-  }*/
+  }
+
+  sendConfirm=()=>{
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        user.sendEmailVerification().then(function() {
+          console.log('confirmation sent');
+          //this.navCtrl.push(Login);
+        }, function(error) {
+          console.log('confirmation not sent');
+        });
+      } else {
+        // No user is signed in.
+        console.log('no user');
+      }
+    });
+  }
 }

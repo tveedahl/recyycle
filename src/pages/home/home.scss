@@ -1,5 +1,5 @@
 page-home {
-    ion-content.content.content-md {
+    ion-content.content {
         background-color: map-get($colors, darkGreen);
     }
 
@@ -25,6 +25,6 @@ page-home {
     p#appDesc {
         font-family: $merienda-regular;
         color: map-get($colors, lightBrown);
-        font-size: 15px;
+        font-size: 13px;
     }
 }
