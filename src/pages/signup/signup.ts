@@ -60,15 +60,17 @@ export class Signup {
     this.sendConfirm();
   }
 
-  sendConfirm=()=>{
-    firebase.auth().onAuthStateChanged(function(user) {
+  sendConfirm() {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        user.sendEmailVerification().then(function() {
+        user.sendEmailVerification().then((navCtrl) => {
           console.log('confirmation sent');
-          //this.navCtrl.push(Login);
         }, function(error) {
           console.log('confirmation not sent');
         });
+        if(user.uid) {
+          this.navCtrl.push(Login);
+        }
       } else {
         // No user is signed in.
         console.log('no user');
